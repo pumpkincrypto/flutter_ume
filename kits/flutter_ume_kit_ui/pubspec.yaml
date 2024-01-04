@@ -11,7 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_ume:
-    path: ../../
+    git: 
+      url: git@github.com:li8607/flutter_ume.git
   touch_indicator: ^2.0.0
 
   # for Cyclop
