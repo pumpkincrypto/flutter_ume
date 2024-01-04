@@ -13,7 +13,7 @@ dependencies:
   vm_service: ^14.0.0
   flutter_ume:
     git: 
-      url: git@github.com:li8607/flutter_ume.git
+      url: git@github.com:pumpkincrypto/flutter_ume.git
 
 dev_dependencies:
   flutter_test:
