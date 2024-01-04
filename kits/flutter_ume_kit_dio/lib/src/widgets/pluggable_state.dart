@@ -206,7 +206,7 @@ class _ResponseCardState extends State<_ResponseCard> {
   /// Status code for the [_response].
   int get _statusCode {
     if (_response.statusCode == 200) {
-      if (_response.data == null) return _response.statusCode;
+      if (_response.data == null) return _response.statusCode!;
       final result = (_response.data as Map<String, dynamic>);
       return result['code'] ?? 0;
     }
