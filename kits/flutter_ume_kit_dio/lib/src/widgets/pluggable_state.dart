@@ -204,7 +204,13 @@ class _ResponseCardState extends State<_ResponseCard> {
   Duration get _duration => _endTime.difference(_startTime);
 
   /// Status code for the [_response].
-  int get _statusCode => _response.statusCode ?? 0;
+  int get _statusCode {
+    if (_response.statusCode == 200) {
+      final result = (_response.data as Map<String, dynamic>);
+      return result['code'] ?? 0;
+    }
+    return _response.statusCode ?? 0;
+  }
 
   /// Colors matching status.
   Color get _statusColor {
@@ -220,6 +226,9 @@ class _ResponseCardState extends State<_ResponseCard> {
     if (_statusCode >= 500 && _statusCode < 600) {
       return Colors.red;
     }
+    if (_statusCode >= 600) {
+      return Colors.red;
+    }
     return Colors.blueAccent;
   }
 
@@ -233,7 +242,9 @@ class _ResponseCardState extends State<_ResponseCard> {
     final Map<String, List<String>> map = _request.headers.map(
       (key, value) => MapEntry(
         key,
-        value is Iterable ? value.map((v) => v.toString()).toList() : [value],
+        value is Iterable
+            ? value.map((v) => v.toString()).toList()
+            : [value.toString()],
       ),
     );
     final Headers headers = Headers.fromMap(map);
